@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PBMA.Core;
 
-namespace Chapter2
+namespace PBMA.Chapter2
 {
     public class FallBodySolution : SingletonMonoBehaviour<FallBodySolution>
     {
