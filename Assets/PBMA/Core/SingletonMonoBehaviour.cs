@@ -1,41 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PBMA.Core
 {
     public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     {
-        private static T instance = null;
+        private static T _instance;
 
         public static T Instance
         {
             get
             {
-                if (isExpired)
+                if (_isExpired)
                 {
                     return null;
                 }
 
-                if (instance == null)
+                if (_instance)
                 {
-                    instance = FindObjectOfType<T>();
-                    if (instance == null)
-                    {
-                        var go = new GameObject(typeof(T).Name);
-                        instance = go.AddComponent<T>();
-                    }
+                    return _instance;
                 }
+                
+                var go = new GameObject(typeof(T).Name);
+                _instance = go.AddComponent<T>();
 
-                return instance;
+                return _instance;
             }
         }
 
-        private static bool isExpired = false;
+        private static bool _isExpired;
 
         private void OnDestroy()
         {
-            isExpired = true;
+            _isExpired = true;
+            _instance = null;
         }
     }
 }

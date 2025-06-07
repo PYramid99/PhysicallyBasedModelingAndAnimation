@@ -17,7 +17,7 @@ namespace PBMA.Chapter2
             {
                 body.ActiveTime += Time.fixedDeltaTime;
 
-                IntegralForce(body);
+                IntegrateForce(body);
 
                 switch (body.Type)
                 {
@@ -45,7 +45,7 @@ namespace PBMA.Chapter2
             _fallBodies.Remove(body);
         }
 
-        private void IntegralForce(FallBody body)
+        private void IntegrateForce(FallBody body)
         {
             var force = body.Mass * Grivaty;
 
